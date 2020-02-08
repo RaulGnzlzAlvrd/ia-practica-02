@@ -136,7 +136,9 @@ public class Gato {
                     sucesor.padre = this;
                     sucesor.jugador1 = !this.jugador1;
                     sucesor.tiraEn(x,y);
-                    sucesores.add(sucesor);
+                    if (!sucesores.contains(sucesor)) {
+	                    sucesores.add(sucesor);
+                    }
                 }
             }
         }
@@ -192,7 +194,7 @@ public class Gato {
         	{1, 0, 2}, 
         	{0, 2, 1}
         };
-        
+
         for (int x = 0; x < 3; x++) {
             for (int y = 0; y < 3; y++) {
             	int coordX = (x + matriz[y][x]) % 3;
@@ -214,7 +216,7 @@ public class Gato {
         
         // TODO
         
-        return true;
+        return false;
     }
 
     /**
@@ -224,7 +226,7 @@ public class Gato {
         
         // TODO
         
-        return true;
+        return false;
     }
 
     /**
@@ -234,7 +236,7 @@ public class Gato {
         
         // TODO
         
-        return true;
+        return false;
     }
 
     /**
@@ -244,7 +246,7 @@ public class Gato {
         
         // TODO
         
-        return true;
+        return false;
     }
 
     /**
@@ -254,7 +256,7 @@ public class Gato {
         
         // TODO
         
-        return true;
+        return false;
     }
 
     /**
