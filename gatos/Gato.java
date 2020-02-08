@@ -248,7 +248,7 @@ public class Gato {
             }
         }
         
-        return false;
+        return true;
     }
 
     /**
