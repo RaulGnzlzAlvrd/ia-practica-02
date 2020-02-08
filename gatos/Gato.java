@@ -129,13 +129,13 @@ public class Gato {
         sucesores = new LinkedList<>();
         
         // TODO: Tu código aquí.
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (this.tablero[i][j] == 0) {
+        for (int x = 0; x < 3; x++) {
+            for (int y = 0; y < 3; y++) {
+                if (this.tablero[y][x] == 0) {
                     Gato sucesor = new Gato(this);
                     sucesor.padre = this;
                     sucesor.jugador1 = !this.jugador1;
-                    sucesor.tiraEn(j,i);
+                    sucesor.tiraEn(x,y);
                     sucesores.add(sucesor);
                 }
             }
@@ -170,6 +170,13 @@ public class Gato {
     boolean esSimetricoDiagonalInvertida(Gato otro) {
         
         // TODO
+        for (int x = 0; x < 3; x++) {
+            for (int y = 0; y < 3; y++) {
+                if (this.tablero[y][x] != otro.tablero[x][y]) {
+                    return false;
+                }
+            }
+        }
         
         return true;
     }
@@ -180,7 +187,23 @@ public class Gato {
     boolean esSimetricoDiagonal(Gato otro) {
         
         // TODO
+        int[][] matriz = {
+        	{2, 1, 0}, 
+        	{1, 0, 2}, 
+        	{0, 2, 1}
+        };
         
+        for (int x = 0; x < 3; x++) {
+            for (int y = 0; y < 3; y++) {
+            	int coordX = (x + matriz[y][x]) % 3;
+            	int coordY = (y + matriz[y][x]) % 3;
+
+                if (this.tablero[y][x] != otro.tablero[coordY][coordX]) {
+                    return false;
+                }
+            }
+        }
+
         return true;
     }
 
