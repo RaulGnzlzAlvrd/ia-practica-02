@@ -72,7 +72,8 @@ public class Gato {
         // Diagonal
         if ((x == 1 && y != 1) || (y == 1 && x != 1)) {
             return; // No pueden hacer diagonal
-        }      // Centro y esquinas
+        }      
+        // Centro y esquinas
         if (x == 1 && y == 1) {
             // Diagonal \
             if (tablero[0][0] == marca && tablero[2][2] == marca) {
@@ -115,7 +116,7 @@ public class Gato {
      * Este es el método que se deja como práctica.
      * ------- *** ------- *** -------
      * Crea la lista sucesores y 
-     * agrega a todos los estados que sujen de tiradas válidas. Se consideran
+     * agrega a todos los estados que surjen de tiradas válidas. Se consideran
      * tiradas válidas a aquellas en una casilla libre. Además, se optimiza el
      * proceso no agregando estados con jugadas simétricas. Los estados nuevos
      * tendrán una tirada más y el jugador en turno será el jugador
@@ -128,6 +129,17 @@ public class Gato {
         sucesores = new LinkedList<>();
         
         // TODO: Tu código aquí.
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (this.tablero[i][j] == 0) {
+                    Gato sucesor = new Gato(this);
+                    sucesor.padre = this;
+                    sucesor.jugador1 = !this.jugador1;
+                    sucesor.tiraEn(j,i);
+                    sucesores.add(sucesor);
+                }
+            }
+        }
         
         return sucesores;
     }
