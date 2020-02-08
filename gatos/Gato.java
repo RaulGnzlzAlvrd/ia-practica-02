@@ -240,9 +240,9 @@ public class Gato {
 
         for (int x = 0; x < 3; x++) {
             for (int y = 0; y < 3; y++) {
-            	int coordY = (y + matriz[x]) % 3;
+            	int coordY = (y + matriz[y]) % 3;
 
-                if (this.tablero[y][x] != otro.tablero[y][coordX]) {
+                if (this.tablero[y][x] != otro.tablero[coordY][x]) {
                     return false;
                 }
             }
