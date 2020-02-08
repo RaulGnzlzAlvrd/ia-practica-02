@@ -215,8 +215,19 @@ public class Gato {
     boolean esSimetricoVerticalmente(Gato otro) {
         
         // TODO
+        int[] matriz = {2, 0, 1};
+
+        for (int x = 0; x < 3; x++) {
+            for (int y = 0; y < 3; y++) {
+            	int coordX = (x + matriz[x]) % 3;
+
+                if (this.tablero[y][x] != otro.tablero[y][coordX]) {
+                    return false;
+                }
+            }
+        }
         
-        return false;
+        return true;
     }
 
     /**
@@ -225,6 +236,17 @@ public class Gato {
     boolean esSimetricoHorizontalmente(Gato otro) {
         
         // TODO
+        int[] matriz = {2, 0, 1};
+
+        for (int x = 0; x < 3; x++) {
+            for (int y = 0; y < 3; y++) {
+            	int coordY = (y + matriz[x]) % 3;
+
+                if (this.tablero[y][x] != otro.tablero[y][coordX]) {
+                    return false;
+                }
+            }
+        }
         
         return false;
     }
