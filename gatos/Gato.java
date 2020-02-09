@@ -251,13 +251,24 @@ public class Gato {
         return true;
     }
 
+    /** Regresa un tablero girado 90 grados en dirección de las manecillas del reloj.
+     * @return Gato girado 0 grados con respecto al actual (this).
+     */
+    Gato gira90() {
+        return this;
+    }
+
     /**
      * Rota el otro tablero 90Â° en la dirección de las manecillas del reloj.
      */
     boolean esSimetrico90(Gato otro) {
         
         // TODO
-        
+        Gato gira90 = this.gira90();
+        if (this.esIgual(gira90)) {
+            return true;
+        }
+
         return false;
     }
 
@@ -267,7 +278,11 @@ public class Gato {
     boolean esSimetrico180(Gato otro) {
         
         // TODO
-        
+        Gato gira180 = this.gira90().gira90();
+        if (this.esIgual(gira180)) {
+            return true;
+        }
+
         return false;
     }
 
@@ -277,7 +292,11 @@ public class Gato {
     boolean esSimetrico270(Gato otro) {
         
         // TODO
-        
+        Gato gira270 = this.gira90().gira90().gira90();
+        if (this.esIgual(gira270)) {
+            return true;
+        }
+
         return false;
     }
 
