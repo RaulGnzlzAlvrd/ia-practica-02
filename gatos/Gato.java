@@ -255,7 +255,21 @@ public class Gato {
      * @return Gato girado 0 grados con respecto al actual (this).
      */
     Gato gira90() {
-        return this;
+        Gato girado = new Gato(this);
+        int[][][] matriz = {
+            {{2,0}, {1,0}, {0,0}},
+            {{2,1}, {1,1}, {0,1}},
+            {{2,2}, {1,2}, {0,2}}
+        };
+
+        for (int x = 0; x < 3; x++) {
+            for (int y = 0; y < 3; y++) {
+                int[] coordenadas = matriz[x][y];
+                girado.tablero[coordenadas[1]][coordenadas[0]] = this.tablero[y][x];
+            }
+        }
+
+        return girado;
     }
 
     /**
@@ -265,11 +279,7 @@ public class Gato {
         
         // TODO
         Gato gira90 = this.gira90();
-        if (this.esIgual(gira90)) {
-            return true;
-        }
-
-        return false;
+        return this.esIgual(gira90);
     }
 
     /**
@@ -279,11 +289,7 @@ public class Gato {
         
         // TODO
         Gato gira180 = this.gira90().gira90();
-        if (this.esIgual(gira180)) {
-            return true;
-        }
-
-        return false;
+        return this.esIgual(gira180);
     }
 
     /**
@@ -293,11 +299,7 @@ public class Gato {
         
         // TODO
         Gato gira270 = this.gira90().gira90().gira90();
-        if (this.esIgual(gira270)) {
-            return true;
-        }
-
-        return false;
+        return this.esIgual(gira270);
     }
 
     /**
