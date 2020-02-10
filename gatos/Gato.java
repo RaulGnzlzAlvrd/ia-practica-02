@@ -252,7 +252,7 @@ public class Gato {
     }
 
     /** Regresa un tablero girado 90 grados en dirección de las manecillas del reloj.
-     * @return Gato girado 0 grados con respecto al actual (this).
+     * @return Gato girado 90 grados con respecto al actual (this).
      */
     Gato gira90() {
         Gato girado = new Gato(this);
@@ -261,7 +261,6 @@ public class Gato {
             {{2,1}, {1,1}, {0,1}},
             {{2,2}, {1,2}, {0,2}}
         };
-
         for (int x = 0; x < 3; x++) {
             for (int y = 0; y < 3; y++) {
                 int[] coordenadas = matriz[x][y];
@@ -272,34 +271,42 @@ public class Gato {
         return girado;
     }
 
+    /** Regresa un tablero girado 180 grados en dirección de las manecillas del reloj.
+     * @return Gato girado 180 grados con respecto al actual (this).
+     */
+    Gato gira180() {
+        return this.gira90().gira90();
+    }
+
+    /** Regresa un tablero girado 270 grados en dirección de las manecillas del reloj.
+     * @return Gato girado 270 grados con respecto al actual (this).
+     */
+    Gato gira270() {
+        return this.gira180().gira90();
+    }
+
     /**
-     * Rota el otro tablero 90Â° en la dirección de las manecillas del reloj.
+     * Al rotar el otro tablero 90Â° en la dirección de las manecillas del reloj son iguales.
      */
     boolean esSimetrico90(Gato otro) {
-        
         // TODO
-        Gato gira90 = otro.gira90();
-        return this.esIgual(gira90);
+        return this.esIgual(otro.gira90());
     }
 
     /**
-     * Rota el otro tablero 180Â° en la dirección de las manecillas del reloj.
+     * Al rotar el otro tablero 180Â° en la dirección de las manecillas del reloj son iguales.
      */
     boolean esSimetrico180(Gato otro) {
-        
         // TODO
-        Gato gira180 = otro.gira90().gira90();
-        return this.esIgual(gira180);
+        return this.esIgual(otro.gira180());
     }
 
     /**
-     * Rota el otro tablero 270Â° en la dirección de las manecillas del reloj.
+     * Al rotar el otro tablero 270Â° en la dirección de las manecillas del reloj son iguales.
      */
     boolean esSimetrico270(Gato otro) {
-        
         // TODO
-        Gato gira270 = otro.gira90().gira90().gira90();
-        return this.esIgual(gira270);
+        return this.esIgual(otro.gira270());
     }
 
     /**
