@@ -33,9 +33,9 @@ public class Gato {
      * Constructor que copia el tablero de otro gato y el número de tiradas
      */
     Gato(Gato g) {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                tablero[i][j] = g.tablero[i][j];
+        for (int y = 0; y < 3; y++) {
+            for (int x = 0; x < 3; x++) {
+                tablero[y][x] = g.tablero[y][x];
             }
         }
         tiradas = g.tiradas;
@@ -129,13 +129,13 @@ public class Gato {
         sucesores = new LinkedList<>();
         
         // TODO: Tu código aquí.
-        for (int x = 0; x < 3; x++) {
-            for (int y = 0; y < 3; y++) {
+        for (int y = 0; y < 3; y++) {
+            for (int x = 0; x < 3; x++) {
                 if (this.tablero[y][x] == 0) {
                     Gato sucesor = new Gato(this);
                     sucesor.padre = this;
                     sucesor.jugador1 = !this.jugador1;
-                    sucesor.tiraEn(x,y);
+                    sucesor.tiraEn(x, y);
                     if (!sucesores.contains(sucesor)) {
 	                    sucesores.add(sucesor);
                     }
@@ -156,9 +156,9 @@ public class Gato {
      * Revisa si ambos gatos son exactamente el mismo.
      */
     boolean esIgual(Gato otro) {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (tablero[i][j] != otro.tablero[i][j]) {
+        for (int y = 0; y < 3; y++) {
+            for (int x = 0; x < 3; x++) {
+                if (tablero[y][x] != otro.tablero[y][x]) {
                     return false;
                 }
             }
@@ -172,8 +172,8 @@ public class Gato {
     boolean esSimetricoDiagonalInvertida(Gato otro) {
         
         // TODO
-        for (int x = 0; x < 3; x++) {
-            for (int y = 0; y < 3; y++) {
+        for (int y = 0; y < 3; y++) {
+            for (int x = 0; x < 3; x++) {
                 if (this.tablero[y][x] != otro.tablero[x][y]) {
                     return false;
                 }
@@ -195,10 +195,10 @@ public class Gato {
         	{0, 2, 1}
         };
 
-        for (int x = 0; x < 3; x++) {
-            for (int y = 0; y < 3; y++) {
-            	int coordX = (x + matriz[y][x]) % 3;
-            	int coordY = (y + matriz[y][x]) % 3;
+        for (int y = 0; y < 3; y++) {
+            for (int x = 0; x < 3; x++) {
+            	int coordX = (x + matriz[x][y]) % 3;
+            	int coordY = (y + matriz[x][y]) % 3;
 
                 if (this.tablero[y][x] != otro.tablero[coordY][coordX]) {
                     return false;
@@ -217,8 +217,8 @@ public class Gato {
         // TODO
         int[] matriz = {2, 0, 1};
 
-        for (int x = 0; x < 3; x++) {
-            for (int y = 0; y < 3; y++) {
+        for (int y = 0; y < 3; y++) {
+            for (int x = 0; x < 3; x++) {
             	int coordX = (x + matriz[x]) % 3;
 
                 if (this.tablero[y][x] != otro.tablero[y][coordX]) {
@@ -238,8 +238,8 @@ public class Gato {
         // TODO
         int[] matriz = {2, 0, 1};
 
-        for (int x = 0; x < 3; x++) {
-            for (int y = 0; y < 3; y++) {
+        for (int y = 0; y < 3; y++) {
+            for (int x = 0; x < 3; x++) {
             	int coordY = (y + matriz[y]) % 3;
 
                 if (this.tablero[y][x] != otro.tablero[coordY][x]) {
@@ -278,7 +278,7 @@ public class Gato {
     boolean esSimetrico90(Gato otro) {
         
         // TODO
-        Gato gira90 = this.gira90();
+        Gato gira90 = otro.gira90();
         return this.esIgual(gira90);
     }
 
@@ -288,7 +288,7 @@ public class Gato {
     boolean esSimetrico180(Gato otro) {
         
         // TODO
-        Gato gira180 = this.gira90().gira90();
+        Gato gira180 = otro.gira90().gira90();
         return this.esIgual(gira180);
     }
 
@@ -298,7 +298,7 @@ public class Gato {
     boolean esSimetrico270(Gato otro) {
         
         // TODO
-        Gato gira270 = this.gira90().gira90().gira90();
+        Gato gira270 = otro.gira90().gira90().gira90();
         return this.esIgual(gira270);
     }
 
@@ -312,7 +312,6 @@ public class Gato {
         if (esIgual(otro)) {
             return true;
         }
-
         if (esSimetricoDiagonalInvertida(otro)) {
             return true;
         }
@@ -345,9 +344,9 @@ public class Gato {
     public String toString() {
         char simbolo = jugador1 ? 'o' : 'x';
         String gs = "";
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                gs += tablero[i][j] + " ";
+        for (int y = 0; y < 3; y++) {
+            for (int x = 0; x < 3; x++) {
+                gs += tablero[y][x] + " ";
             }
             gs += '\n';
         }
