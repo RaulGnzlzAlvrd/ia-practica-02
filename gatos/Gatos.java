@@ -199,12 +199,7 @@ public class Gatos extends PApplet {
             Gato actual = listaAbierta.remove();
             LinkedList<Gato> sucesores = actual.generaSucesores();
             if (sucesores != null) {
-                for (int j = 0; j < sucesores.size(); j++) {
-                    Gato sucesor = sucesores.get(j);
-                    if (!listaAbierta.contains(sucesor)) {
-                        listaAbierta.add(sucesor);
-                    }
-                }
+                listaAbierta.addAll(sucesores);
             }
         }
 
